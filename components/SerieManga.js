@@ -1,5 +1,7 @@
+import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+
+import { View, Text, StyleSheet, Image, Button } from "react-native";
 
 const SerieManga = (props) => {
   return (
