@@ -3,7 +3,7 @@ import React from "react";
 
 import { View, Text, StyleSheet, Image, Button } from "react-native";
 
-const SerieManga = (props) => {
+const MangaSerie = (props) => {
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}></View>
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   imageSerie: {}
 });
 
-export default SerieManga;
+export default MangaSerie;

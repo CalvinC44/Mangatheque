@@ -1,92 +1,52 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-  ScrollView
-} from "react-native";
-import SerieManga from "./components/SerieManga";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import Home from "./components/Home";
+import Liked from "./components/Liked";
+import Profile from "./components/Profile";
+import MangaSerie from "./components/MangaSerie";
+import Manga from "./components/Manga";
+import colors from "./assets/colors/colors";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.mangaWrapper}>
-        <Text style={styles.sectionTitle}>Séries de manga</Text>
-        <ScrollView style={styles.items}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Serie");
-            }}
-          >
-            <SerieManga />
-          </TouchableOpacity>
-          <SerieManga />
-          <SerieManga />
-        </ScrollView>
-      </View>
-    </View>
-  );
-}
-
-function SerieScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details Screen</Text>
-      <TouchableOpacity
-        style={{ backgroundColor: "red", padding: 20 }}
-        onPress={() => {
-          navigation.navigate("Manga");
-        }}
-      ></TouchableOpacity>
-    </View>
-  );
-}
-
-function MangaScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Manga screen</Text>
-      <TouchableOpacity
-        style={{ backgroundColor: "red", padding: 20 }}
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
-      ></TouchableOpacity>
-    </View>
-  );
-}
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-export default function App() {
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        style: styles.tabBar,
+        activeTintColor: colors.orange,
+        inactiveTintColor: colors.gray
+      }}
+    >
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Liked" component={Liked} />
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
+  );
+};
+
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Serie" component={SerieScreen} />
-        <Stack.Screen name="Manga" component={MangaScreen} />
+        <Stack.Screen name="TabNavigator" component={TabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#E8EAED"
-  },
-  mangaWrapper: {
-    paddingTop: 80,
-    paddingHorizontal: 20
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "bold"
-  },
-  items: {
-    marginTop: 30
+  tabBar: {
+    backgroundColor: colors.white,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   }
 });
+
+export default App;
