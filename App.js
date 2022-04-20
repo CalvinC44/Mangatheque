@@ -11,6 +11,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import Entypo from "react-native-vector-icons/Entypo";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
+Entypo.loadFont();
+MaterialCommunityIcons.loadFont();
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,14 +24,44 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        style: styles.tabBar,
-        activeTintColor: colors.orange,
-        inactiveTintColor: colors.gray
+        tabBarStyle: {
+          backgroundColor: colors.gray,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20
+        },
+        tabBarActiveTintColor: colors.orange,
+        tabBarInactiveTintColor: colors.darkGray,
+        headerShown: false,
+        tabBarShowLabel: false
       }}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Liked" component={Liked} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Entypo name="home" color={color} size={32} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Liked"
+        component={Liked}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Entypo name="heart" color={color} size={32} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account" color={color} size={32} />
+          )
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -35,18 +70,16 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="TabNavigator" component={TabNavigator} />
+        <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20
-  }
-});
+const styles = StyleSheet.create({});
 
 export default App;

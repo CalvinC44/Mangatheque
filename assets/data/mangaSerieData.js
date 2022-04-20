@@ -12,7 +12,7 @@ const mangaSerieData = [
     title: "Dragon Ball",
     number: 45,
     image: require("../mangaImages/dragon-ball.jpg"),
-    description: "Monkey from other planet kicking ass",
+    description: "Monkey from other planet",
     liked: true
   },
   {
@@ -20,7 +20,7 @@ const mangaSerieData = [
     title: "One Piece",
     number: 102,
     image: require("../mangaImages/one-piece.jpg"),
-    description: "Elastic boy kicking ass",
+    description: "Elastic boy",
     liked: true
   }
 ];
