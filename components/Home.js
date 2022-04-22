@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  FlatList,
+  TouchableOpacity,
+  ImageBackground
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "../assets/colors/colors";
 import mangaData from "../assets/data/mangaData";
@@ -8,7 +16,13 @@ import mangaSerieData from "../assets/data/mangaSerieData";
 const Home = () => {
   const renderMangaItem = ({ item }) => {
     <TouchableOpacity>
-      <ImageBackground source={item.image}></ImageBackground>
+      <ImageBackground
+        source={item.image}
+        style={styles.allMangaItem}
+        imageStyle={styles.allMangaItemImage}
+      >
+        <Text>{item.title}</Text>
+      </ImageBackground>
     </TouchableOpacity>;
   };
 
